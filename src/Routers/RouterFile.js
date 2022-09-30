@@ -1,42 +1,89 @@
 
-import { Component } from "react";
-import Studentsdata from "../component/Studentsdata";
-import MainList from "../Pages/MainList";
-import Dashbord from "../Pages/Student/Dashbord";
-import Signup from "../Pages/Student/Signup";
-import StudentsData02 from "../Pages/StudentsForm/StudentsData02";
-import StudentsData03 from "../Pages/StudentsForm/StudentsData03";
+import AddPermission from "../Pages/Permission/AddPermission";
+import PermissionDashbord from "../Pages/Permission/PermissionDashbord";
+import AddRole from "../Pages/Role/AddRole";
+import RoleDashbord from "../Pages/Role/RoleDashbord";
+import Dashbord from "../Pages/StudentsForm/Dashbord";
 import StudentsForm from "../Pages/StudentsForm/StudentsForm";
+import UserDashbord from "../Pages/User/UserDashbord";
+import UserForm from "../Pages/User/UserForm";
+
 
 const RouterFile = [
-  // {
-  //   path: "/MainList",
-  //   component: MainList
-
-  // },
-  
   {
-    path: "/mainlist",
-  Component: Dashbord,
+    path: "/dashbord",
+    Component: Dashbord,
+    permission: "view student"
 
   },
   {
-    path:"/mainlist/studentsform",
-    Component:StudentsForm
+    path: "/studentsform",
+    Component: StudentsForm,
+    permission: "add student"
+
   },
- {
-   path:"/mainlist/studentsform/StudentsData02",
-  Component:StudentsData02
-},
-{
-  path:"/mainlist/studentsform/StudentsData03",
- Component:StudentsData03
-}
-               
-  // {
-  //   path:"Studentsdata",
-  //   Component:Studentsdata
-  // },
+
+  {
+    path: "/studentsform/:id",
+    Component: StudentsForm,
+    permission: "edit student"
+
+  },
+
+  {
+    path: "/userdashbord",
+    Component: UserDashbord,
+    permission: "view user"
+
+  },
+  {
+    path: "/userform",
+    Component: UserForm,
+    permission: "add user"
+
+  },
+  {
+    path: "/userform/:id",
+    Component: UserForm,
+    permission: "edit user"
+
+  },
+  {
+    path: "/roledashbord",
+    Component: RoleDashbord,
+    permission: "view role"
+
+  },
+  {
+    path: "/addrole",
+    Component: AddRole,
+    permission: "add role"
+
+  },
+  {
+    path: "/addrole/:id",
+    Component: AddRole,
+    permission: "edit role"
+
+  },
+  {
+    path: "/permissiondashbord",
+    Component: PermissionDashbord,
+    permission: "view permission"
+
+  },
+  {
+    path: "/addpermission",
+    Component: AddPermission,
+    permission: "add permission"
+
+  },
+  {
+    path: "/addpermission/:id",
+    Component: AddPermission,
+    permission: "edit permission"
+
+  }
 ]
 
 export default RouterFile

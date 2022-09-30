@@ -1,101 +1,86 @@
-import React, { useState } from 'react'
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
 function StudentsData01(props) {
-    // const [sData01, setSData01] = useState()
-    console.log("sdata->", props)
+    const { register, reset, handleSubmit, formState: { errors } } = useForm();
 
-    console.log("props->", props)
-    const navigate = useNavigate()
-    const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = (data) => {
-        console.log("onsubmit->", data)
         props.studentdata(data)
-        // setSData01(data)
-
-
-        navigate("/mainlist/studentsform/StudentsData02")
+        props.nextStep()
     }
+
+    useEffect(() => {
+        reset({
+            name: props.formdata.name,
+            father_name: props.formdata.father_name,
+            mother_name: props.formdata.mother_name,
+            contact_no: props.formdata.contact_no,
+        }
+        );
+    }, [props.formdata])
     return (
-        <div className='hold-transition login-page'>
-            <div className="login-box">
-                <div className="login-logo">
-                    <a href=""><b>Admin</b>LTE</a>
+        <>
+            <section className="content ">
+                <div className="container-fluid">
+                    <div className="row justify-content-center ">
+                        <div className="col-md-10 my-5">
+                            <div className="card card-primary">
+                                <div className="card-header">
+                                    <h3 className="card-title">Student Form</h3>
+                                </div>
+                                <form onSubmit={handleSubmit(onSubmit)}>
+                                    <div className="card-body">
+                                        <div className=" form-group mb-3">
+                                            <label htmlFor="exampleInputFile">Name</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="name"
+                                                {...register("name", { required: true })}
+                                            />
+                                            {errors.name?.type === 'required' && <p className='text-danger'>Name  is required</p>}
+                                        </div>
+                                        <div className="form-group mb-3">
+                                            <label htmlFor="exampleInputPassword1">Father Name</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="father_name"
+                                                {...register("father_name", { required: true })}
+                                            />
+                                            {errors.father_name?.type === 'required' && <p className='text-danger'>*father name  is required</p>}
+                                        </div>
+                                        <div className="form-group mb-3">
+                                            <label htmlFor="exampleInputPassword1">Mother Name</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder="mother_name"
+                                                {...register("mother_name", { required: true })}
+                                            />
+                                            {errors.mother_name?.type === 'required' && <p className='text-danger'>mother name  is required</p>}
+                                        </div>
+                                        <div className="form-group mb-3">
+                                            <label htmlFor="exampleInputPassword1">Contact No</label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                placeholder="contact_no"
+                                                {...register("contact_no", { required: true })}
+                                            />
+                                            {errors.contact_no?.type === 'required' && <p className='text-danger'>contact_no  is required</p>}
+                                        </div>
+                                    </div>
+                                    <div className="card-footer">
+                                        <button type="submit" className="btn btn-primary">Next</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div >
                 </div>
-                <div className="card">
-                    <div className="card-body login-card-body">
-                        <p className="login-box-msg">Sign up to start your session</p>
-
-
-
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className="input-group mb-3">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="name"
-                                    {...register("name", { required: true })}
-                                />
-                                {errors.name?.type === 'required' && <p>Name  is required</p>}
-                                <div className="input-group-append">
-                                    <div className="input-group-text">
-                                        <span className="fas fa-envelope"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="input-group mb-3">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="father_name"
-                                    {...register("father_name", { required: true })}
-                                />
-                                {errors.father_name?.type === 'required' && <p>father_name  is required</p>}
-                                <div className="input-group-append">
-                                    <div className="input-group-text">
-                                        <span className="fas fa-envelope"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="input-group mb-3">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="mother_name"
-                                    {...register("mother_name", { required: true })}
-                                />
-                                {errors.mother_name?.type === 'required' && <p>mother_name  is required</p>}
-                                <div className="input-group-append">
-                                    <div className="input-group-text">
-                                        <span className="fas fa-envelope"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="input-group mb-3">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="contact_no"
-                                    {...register("contact_no", { required: true })}
-                                />
-                                {errors.contact_no?.type === 'required' && <p>contact_no  is required</p>}
-                                <div className="input-group-append">
-                                    <div className="input-group-text">
-                                        <span className="fas fa-envelope"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-4">
-                                <button type="submit" className="btn btn-primary btn-block" >Next</button>
-                            </div>
-                        </form>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
+            </section>
+        </>
 
     )
 }

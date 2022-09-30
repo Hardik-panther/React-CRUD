@@ -1,65 +1,20 @@
 import React from 'react'
-// import { Outlet } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Sidebar = () => {
+    const navigate = useNavigate()
+
+    const logout = () => {
+        localStorage.clear()
+        navigate("/")
+    }
+
     return (
         <div>
-            {/* <div className='d-flex' style={{height:"900px"}}>
-                <div className=" bg-black sidebar ">
-                    <div className="form-inline">
-                        <div className="input-group" data-widget="sidebar-search">
-                            <input className="form-control form-control-sidebar " type="search" placeholder="Search" aria-label="Search" />
-                            <div className="input-group-append">
-                                <button className="btn btn-sidebar bg-white ">
-                                    <i className="fas fa-search fa-fw"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                          <li className="nav-item">
-                            <a href="/" className="nav-link">
-                                <i className="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Students
-                                </p>
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a href="pages/widgets.html" className="nav-link">
-                                <i className="nav-icon fas fa-th"></i>
-                                <p>
-                                    Permission
-                                </p>
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a href="/" className="nav-link">
-                                <i className="nav-icon fas fa-chart-pie"></i>
-                                <p>
-                                    Role
-                                </p>
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a href="/" className="nav-link">
-                                <i className="nav-icon fas fa-tree"></i>
-                                <p>
-                                    User
-                                </p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-
-            </div> */}
             <aside className="main-sidebar sidebar-dark-primary elevation-4 ">
                 <a href="index3.html" className="brand-link">
                     <span className="brand-text font-weight-light">AdminLTE 3</span>
                 </a>
-
                 <div className="sidebar">
                     <div className="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div className="image">
@@ -68,50 +23,50 @@ const Sidebar = () => {
                             <a href="/" className="d-block">Alexander Pierce</a>
                         </div>
                     </div>
-
                     <nav className="mt-2">
                         <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                             <li className="nav-item">
-                                <a href="/" className="nav-link">
+                                <Link to="/dashbord" className="nav-link">
                                     <i className="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
                                         Students
                                     </p>
-                                </a>
-
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a href="pages/widgets.html" className="nav-link">
+                                <Link to="/permissiondashbord" className="nav-link">
                                     <i className="nav-icon fas fa-th"></i>
                                     <p>
                                         Permission
                                     </p>
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a href="/" className="nav-link">
+                                <Link to="/roledashbord" className="nav-link">
                                     <i className="nav-icon fas fa-chart-pie"></i>
                                     <p>
                                         Role
                                     </p>
-                                </a>
-
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a href="/" className="nav-link">
+                                <Link to="/userdashbord" className="nav-link">
                                     <i className="nav-icon fas fa-tree"></i>
                                     <p>
                                         User
                                     </p>
-                                </a>
-
+                                </Link>
                             </li>
                         </ul>
                     </nav>
-                    {/* <!-- /.sidebar-menu --> */}
+                    <div className='mt-2 d-flex align-item-center'>
+                        <button type="button" className="btn btn-secondary btn-block justify-content-start d-flex align-items-center" onClick={() => { logout() }} >
+                            <i className="fa-solid fa-right-from-bracket mx-2"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
                 </div>
-                {/* <!-- /.sidebar --> */}
             </aside>
         </div>
     )

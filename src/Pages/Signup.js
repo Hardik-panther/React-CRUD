@@ -1,25 +1,20 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
-import Postservice from '../../Service/Postservice';
+import Postservice from '../Service/Postservice';
 
 function Signup() {
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = (data) => {
-        // console.log("signup->",data)
         Postservice.signup_Data(data)
             .then((res) => {
-                // return (res.data)
                 console.log("res111111")
                 navigate("/")
-
             })
             .catch((error) => {
                 console.log("error")
-
             })
-
     }
     return (
         <>
@@ -31,7 +26,6 @@ function Signup() {
                     <div className="card">
                         <div className="card-body login-card-body">
                             <p className="login-box-msg">Sign up to start your session</p>
-
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <div className="input-group mb-3">
                                     <input
@@ -107,15 +101,10 @@ function Signup() {
                                     </div>
                                 </div>
                             </form>
-
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
-            {/* <Outlet/> */}
         </>
     )
 }
